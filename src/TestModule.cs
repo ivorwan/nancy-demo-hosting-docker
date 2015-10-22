@@ -14,6 +14,20 @@ namespace Nancy.Demo.Hosting.Docker
                 System.Console.WriteLine("Visit /machine on " + System.Environment.MachineName);
                 return System.Environment.MachineName + "\r\n";
             };
+
+
+            Get["/masterswitch/get/{id}"] = parameters =>
+            {
+                bool enabled = Session[parameters.id] == null ? false : (bool)Session[parameters.id];
+
+                return "the portal " + parameters.id + " is " + enabled;
+            };
+
+            Get["/masterswitch/post/{id}/{enabled}"] = parameters =>
+            {
+                Session[parameters.id] = (bool)parameters.enabled;
+                return "setting portal " + parameters.id + " to " + parameters.enabled;
+            };
         }
     }
 }
