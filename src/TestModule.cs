@@ -20,13 +20,13 @@ namespace Nancy.Demo.Hosting.Docker
             {
                 bool enabled = Session[parameters.id] == null ? false : (bool)Session[parameters.id];
 
-                return "the portal " + parameters.id + " is " + enabled;
+                return "Portal " + parameters.id + " is " + enabled;
             };
 
             Get["/masterswitch/post/{id}/{enabled}"] = parameters =>
             {
                 Session[parameters.id] = (bool)parameters.enabled;
-                return "setting portal " + parameters.id + " to " + parameters.enabled;
+                return "Setting portal " + parameters.id + " to " + parameters.enabled;
             };
         }
     }
